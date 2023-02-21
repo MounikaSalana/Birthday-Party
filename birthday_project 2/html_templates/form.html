@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday APP</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='css/main.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAq046MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+</head>
+<body>
+    <main>
+        <div class="birhtday">
+            <h1>
+                Birthdays
+            </h1>
+        </div>
+        
+        <h3 class="h3tag">Add a Birthday</h3>
+        
+        <form class="row row-cols-lg-auto g-1 formelements" action="/save_form_data" method="post">
+        
+            <div class="col-4">
+                <label class="visually-hidden" for="inline-form-name">name</label>
+                <input type="text" placeholder="name" name="name">
+            </div>
+            <div class="col-4">
+                <label class="visually-hidden" for="inline-form-year">year</label>
+                <input type="text" placeholder="year" name="year">
+            </div>
+            <div class="col-4">
+                <label class="visually-hidden" for="inline-form-month">month</label>
+                <input type="text" placeholder="month" name="month">
+            </div>
+            <div class="col-4">
+                <label class="visually-hidden" for="inline-form-date">date</label>
+                <input type="text" placeholder="date" name="date">
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+        {% if birthdays|length > 0 %}
+        <h3 class="h3tag">All Birthdays</h3>
+        <div class="container">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Birthday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for birthday in birthdays %}
+                        <tr>
+                            <td>{{birthday.name}}</td>
+                            <td>{{birthday.date}}/{{birthday.month}}/{{birthday.year}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+            <h3 class="h3tag"></h3>
+        {% endif %}
+
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>
